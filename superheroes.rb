@@ -25,13 +25,14 @@ class SuperheroesConnection
   # TODO: change method name
   def print_superheroes
     # TODO: fix this
-    @conn.exec( "select * from superheroes order by name desc" ) do |result|
+    @conn.exec( "select * from superheroes order by name" ) do |result|
       result.each do |row|
         # TODO: fix this to pretty print the superheroes
-        puts row
+        # puts row
         alter_ego = row['alter_ego'] || 'null'
+        arch_nemesis = row['arch_nemesis'] || 'null'
         # dob = row['dob'] || 'null'
-        puts "#{row['name']}'s alter ego is #{alter_ego}!"
+        puts "#{row['name']}'s alter ego is #{alter_ego}! Their arch nemesis is #{row['arch_nemesis']}."
         # puts "#{row['first']} #{row['last']} was born on #{dob}"
       end
     end
@@ -46,15 +47,15 @@ begin
   # TODO: fix this
   connection = SuperheroesConnection.new
 
-  # connection.delete_all
+  connection.delete_all
 
   # TODO: insert superheroes here.
-  connection.insert_superheroes('Batman',            'Bruce Wayne',          'true',  'none',                  'Joker')
-  connection.insert_superheroes('Superman',          'Clark Kent',           'true',  'superhuman',            'Lex Luther')
-  connection.insert_superheroes('Captain America',   'Steve Rogers',         'false', 'superhuman',            'Nazis')
-  connection.insert_superheroes('Iron Man',          'Tony Stark',           'false', 'suit of power armor',   'Mandarin')
-  connection.insert_superheroes('Spider-Man',        'Peter Parker',         'false', 'spider-like abilities', 'Green Goblin')
-  connection.insert_superheroes('Wolverine',         'James Howlett Hudson', 'false', 'metal skeleton',        'Sabretooth') 
+  connection.insert_superheroes('Batman',            'Bruce Wayne',          true,  'none',                  'The Joker')
+  connection.insert_superheroes('Superman',          'Clark Kent',           true,  'superhuman',            'Lex Luther')
+  connection.insert_superheroes('Captain America',   'Steve Rogers',         false, 'superhuman',            'The Nazis')
+  connection.insert_superheroes('Iron Man',          'Tony Stark',           false, 'suit of power armor',   'Mandarin')
+  connection.insert_superheroes('Spider-Man',        'Peter Parker',         false, 'spider-like abilities', 'Green Goblin')
+  connection.insert_superheroes('Wolverine',         'James Howlett Hudson', false, 'metal skeleton',        'Sabretooth') 
 
   # TODO: fix this to use better method name
   connection.print_superheroes

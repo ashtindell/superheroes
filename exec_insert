@@ -1,0 +1,3 @@
+#!/bin/bash
+psql superheroes -f ~/Desktop/Practice_rb/databases/superheroes/insert_superheroes.sql
+
